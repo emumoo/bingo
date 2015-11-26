@@ -1,0 +1,65 @@
+New York
+Los Angeles
+Chicago
+Miami
+Philadelphia
+Dallas
+Houston
+Washington
+Atlanta
+Boston
+Detroit
+Phoenix
+San Francisco
+Seattle
+San Diego
+Minneapolis
+Tampa
+Denver
+Baltimore
+St. Louis
+San Juan
+Riverside
+Las Vegas
+Portland
+Cleveland
+San Antonio
+Pittsburgh
+Sacramento
+San Jose
+Cincinnati
+Kansas City
+Orlando
+Indianapolis
+Virginia Beach
+Milwaukee
+Columbus
+Austin
+Charlotte
+Providence
+Jacksonville
+Memphis
+Salt Lake City
+Jefferson County
+Nashville
+Richmond
+Buffalo
+Hartford
+Bridgeport
+New Orleans
+Raleigh
+Oklahoma City
+Tucson
+El Paso
+Urban Honolulu
+Birmingham
+Albuquerque
+McAllen
+Omaha
+Dayton
+Rochester
+Allentown
+Tulsa
+Fresno
+Sarasota
+Springfield
