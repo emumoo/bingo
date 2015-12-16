@@ -12,7 +12,7 @@
   \foreach \n in {#1, #2, #3, #4, #5} {
     \edef\x{\value{col}}
     \edef\y{\value{row}}
-    \node[anchor=center, text width=5cm, align=center] at (-2.5+5*\x, -2.5+5*\y) {\n};
+    \node[anchor=center, text width=3cm, align=center] at (-2.5+5*\x, -2.5+5*\y) {\n};
     \stepcounter{col}
   }
   \stepcounter{row}
@@ -22,16 +22,16 @@
 \begin{tikzpicture}[scale=0.7]
 
   \begin{scope}
-    \node[anchor=center] at (12.5, 25.5) {\LARGE Bingo!};
+    \node[anchor=center] at (12.5, 25.5) {\LARGE Jingle Bell Bingo};
 
     \draw[very thick, scale=5] (0, 0) grid (5, 5);
 
     \setcounter{row}{1}
-    \setrow {\large ~}  {\large ~}  {\large ~}  {\large ~}  {\large ~}
-    \setrow {\large ~}  {\large ~}  {\large ~}  {\large ~}  {\large ~}
-    \setrow {\large ~}  {\large ~}  {\Large Free Space}  {\large ~}  {\large ~}
-    \setrow {\large ~}  {\large ~}  {\large ~}  {\large ~}  {\large ~}
-    \setrow {\large ~}  {\large ~}  {\large ~}  {\large ~}  {\large ~}
+    \setrow {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}
+    \setrow {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}
+    \setrow {\normalsize ~}  {\normalsize ~}  {\normalsize FREE SPACE (aka PTO)}  {\normalsize ~}  {\normalsize ~}
+    \setrow {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}
+    \setrow {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}  {\normalsize ~}
  
   \end{scope}
 
