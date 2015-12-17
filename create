@@ -1,25 +1,11 @@
 #!/bin/bash
 
-make
-if [ "$1" != "" ]; then
-	echo Creating "$1" bingo boards...
-	for i in $(seq 1 $1);
-	do
-		./run "$i"
-		printf "$i"
-		sleep 0.07s
-		printf "."
-		sleep 0.07s
-		printf "."
-		sleep 0.07s
-		echo "."
-		pdflatex --output-directory pdfs/ bingo"$i".tex > /dev/null
-	done
-	rm *.tex pdfs/*.log pdfs/*.aux
-	echo "Done!"
-else
-	./run
-	pdflatex --output-directory pdfs/ bingo.tex > /dev/null
-	gnome-open pdfs/bingo.pdf
-	rm *.tex pdfs/*.log pdfs/*.aux
-fi
+# Param1 is number of boards to create
+
+for i in $(seq 1 $1);
+do
+	echo "$i"
+	pdflatex --output-directory pdfs/ bingo"$i".tex > log.txt
+done
+rm *.tex pdfs/*.log pdfs/*.aux
+echo "Done!"

@@ -26,70 +26,71 @@ int main(int argc, char *argv[]) {
 
 	char c;
 	char write_name[20];
-	int random, i;
-	
-	memset(choices, 0, sizeof(choices));
+	int random, i, j;
 
-	// Initialize the terms from terms.txt
-	num_terms = init_terms();
-
-	// Choose the ordering (and subset) of terms
-	choose_terms();
+	int param1 = strtol(argv[1], NULL, 0);
 	
-	// Open template
-	template_file = fopen("bingo_template", "r");
-	
-	if (argc == 1) {
-		sprintf(write_name, "bingo.tex");
-	}
-	else {
-		sprintf(write_name, "bingo%s.tex", argv[1]);
-	}
-	write_file = fopen(write_name, "w");
+	for (j = 0; j < param1; j++) {
+
+		memset(choices, 0, sizeof(choices));
+
+		// Initialize the terms from terms.txt
+		num_terms = init_terms();
+
+		// Choose the ordering (and subset) of terms
+		choose_terms();
+		
+		// Open template
+		template_file = fopen("bingo_template", "r");
+		
+		sprintf(write_name, "bingo%i.tex", j+1);
+
+		write_file = fopen(write_name, "w");
 
 
-	/*************************************************************************************************/
-	/*                                                                                               */
-	/*                                             BODY                                              */
-	/*                                                                                               */
-	/*************************************************************************************************/
-	
-	i = 0;
-	c = fgetc(template_file);
-	while (c != EOF) {
-		if (c == '~') {
-			fprintf(write_file, "%s", choices[i]);
-			// printf("%s\n", choices[i]);
-			i++;
-		}
-		else {
-			fputc(c, write_file);
-			// printf("%c", c);
-		}
+		/*************************************************************************************************/
+		/*                                                                                               */
+		/*                                             BODY                                              */
+		/*                                                                                               */
+		/*************************************************************************************************/
+		
+		i = 0;
 		c = fgetc(template_file);
+		while (c != EOF) {
+			if (c == '~') {
+				fprintf(write_file, "%s", choices[i]);
+				// printf("%s\n", choices[i]);
+				i++;
+			}
+			else {
+				fputc(c, write_file);
+				// printf("%c", c);
+			}
+			c = fgetc(template_file);
+		}
+
+		/*************************************************************************************************/
+		/*                                                                                               */
+		/*                                          EPILOGUE                                             */
+		/*                                                                                               */
+		/*************************************************************************************************/
+
+		// deallocate choices
+		for (i = 0; i < 24; i++) {
+			free(choices[i]);
+		}
+
+		// deallocate terms
+		for (i = 0; i < num_terms; i++) {
+			free(terms[i]);
+		}
+		free(terms);
+
+
+		fclose(terms_file);
+		fclose(template_file);
+		fclose(write_file);
 	}
-
-	/*************************************************************************************************/
-	/*                                                                                               */
-	/*                                          EPILOGUE                                             */
-	/*                                                                                               */
-	/*************************************************************************************************/
-
-	// deallocate choices
-	for (i = 0; i < 24; i++) {
-		free(choices[i]);
-	}
-
-	// deallocate terms
-	for (i = 0; i < num_terms; i++) {
-		free(terms[i]);
-	}
-	free(terms);
-
-
-	fclose(terms_file);
-	fclose(template_file);
-	fclose(write_file);
 
 	return 0;
 }
