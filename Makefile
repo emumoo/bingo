@@ -1,5 +1,5 @@
 all:
-	gcc generate_bingo.c -o run
+	gcc -O0 generate_bingo.c -o run
 
 clean:
 	rm *.tex pdfs/* run log.txt

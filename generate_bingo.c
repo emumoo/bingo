@@ -30,23 +30,25 @@ int main(int argc, char *argv[]) {
 
 	int param1 = strtol(argv[1], NULL, 0);
 	
+	// Seed the PRNG
+	srand(time(NULL));
+
+	// Initialize the terms from terms.txt
+	num_terms = init_terms();
+
 	for (j = 0; j < param1; j++) {
 
-		memset(choices, 0, sizeof(choices));
-
-		// Initialize the terms from terms.txt
-		num_terms = init_terms();
-
-		// Choose the ordering (and subset) of terms
-		choose_terms();
-		
-		// Open template
-		template_file = fopen("bingo_template", "r");
-		
 		sprintf(write_name, "bingo%i.tex", j+1);
 
 		write_file = fopen(write_name, "w");
 
+
+		// Open template
+		template_file = fopen("bingo_template", "r");
+
+		
+		// Choose the ordering (and subset) of terms
+		choose_terms();
 
 		/*************************************************************************************************/
 		/*                                                                                               */
@@ -75,22 +77,19 @@ int main(int argc, char *argv[]) {
 		/*                                                                                               */
 		/*************************************************************************************************/
 
-		// deallocate choices
-		for (i = 0; i < 24; i++) {
-			free(choices[i]);
-		}
-
-		// deallocate terms
-		for (i = 0; i < num_terms; i++) {
-			free(terms[i]);
-		}
-		free(terms);
 
 
-		fclose(terms_file);
-		fclose(template_file);
 		fclose(write_file);
+		// fclose(terms_file);
+		// fclose(template_file);
 	}
+	
+
+	// // deallocate terms
+	// for (i = 0; i < num_terms; i++) {
+	// 	free(terms[i]);
+	// }
+	// free(terms);
 
 	return 0;
 }
@@ -98,8 +97,13 @@ int main(int argc, char *argv[]) {
 void choose_terms() {
 	int random, i;
 
-	// Seed the PRNG
-	srand(time(NULL));
+	// Clear choices
+	for (i = 0; i < 24; i++) {
+		free(choices[i]);
+	}
+	memset(choices, 0, sizeof(choices));
+
+	
 	random = rand() % num_terms;
 
 	// Select ordering (and subset) of terms
@@ -130,6 +134,7 @@ int chosen(char *term) {
 	}
 	return 0;
 }
+
 // Return the number of terms
 int init_terms() {
 	char word[MAX_WORD_SIZE];
